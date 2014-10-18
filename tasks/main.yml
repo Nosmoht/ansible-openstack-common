@@ -1,6 +1,6 @@
 ---
 - name: Setup Yum Repository
-  yum: name={{ juno_yum_repo_file }} state=installed
+  yum: name={{ openstack_yum_repo_file }} state=installed
 
 - name: Install Openstack SELinux
   yum: name=openstack-selinux state=installed
