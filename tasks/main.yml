@@ -1,6 +1,10 @@
 ---
-- name: Setup Yum Repository
+- name: Install yum-plugin-priorities
+  yum: name=yum-plugin-priorities state=installed
+  when: ansible_os_family == "RedHat"
+- name: Setup Openstack Yum Repository
   yum: name={{ openstack_yum_repo_file }} state=installed
-
+  when: ansible_os_family == "RedHat"
 - name: Install Openstack SELinux
   yum: name=openstack-selinux state=installed
+  when: ansible_os_family == "RedHat"
