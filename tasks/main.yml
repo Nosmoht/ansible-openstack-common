@@ -1,6 +1,6 @@
 ---
 - name: Install yum-plugin-priorities
-  yum: name=yum-plugin-priorities state=installed
+  yum: name=yum-plugin-priorities state=installed enablerepo=ol7_optional_latest
   when: ansible_os_family == "RedHat"
 - name: Setup Openstack Yum Repository
   yum: name={{ openstack_yum_repo_file }} state=installed
