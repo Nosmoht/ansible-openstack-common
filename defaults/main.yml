@@ -1,2 +1,12 @@
 ---
 openstack_yum_repo_file: http://rdo.fedorapeople.org/openstack-juno/rdo-release-juno.rpm
+openstack_database_node_name: os-db-01
+openstack_controller_node_name: os-ctrl-01
+openstack_message_broker_user_name: openstack
+openstack_message_broker_user_pass: openstack
+openstack_keystone_dbname: keystone
+openstack_keystone_db_user_name: keystone
+openstack_keystone_db_user_pass: openstack
+openstack_keystone_admin_token: e4b019a72cb81650d42f
+openstack_admin_tenant_admin_user: admin
+openstack_admin_tenant_admin_pass: admin
