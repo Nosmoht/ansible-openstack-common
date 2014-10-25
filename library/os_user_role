@@ -26,8 +26,8 @@ def user_role_list(module, command, user, tenant):
 			
 	return user_roles
 		
-def user_role_exit(name, user_roles):
-	return user_roles.has_key(name)
+def user_role_exit(role, user_roles):
+	return user_roles.has_key(role)
 
 def create_user_role(module, command, user, role, tenat):
 	command = '%s user-role-add --user %s --role %s --tenant %s' % (command, user, role, tenant)
@@ -54,9 +54,9 @@ def ensure_user_role(module):
 	changed = False
 	
 	user_roles = user_role_list(module, command, user, tenant)
-	if state == 'present' and not user_role_exit(user, user_roles):
+	if state == 'present' and not user_role_exit(role, user_roles):
 		changed = create_user_role(module, command, user, role, tenant)
-	elif state == 'absent' and user_role_exit(user, user_roles):
+	elif state == 'absent' and user_role_exit(role, user_roles):
 		changed = delete_user_role(module, command, user, role, tenant)
 	return changed
 
