@@ -12,7 +12,7 @@ OPENSTACK_KEYSTONE_BIN = '/usr/bin/keystone'
 # | cdfccf571945457bb2ec3421c0d00218 | admin | f0959a16637444009262aad8c300709c | 4e43ac0534ad4383b86a5e7c02aab7c7 |
 # +----------------------------------+-------+----------------------------------+----------------------------------+
 def user_role_list(module, command, user, tenant):
-	rc, out, err = module.run_command('%s user-list --tenant %s --user %s' % (command, tenant, user))
+	rc, out, err = module.run_command('%s user-role-list --tenant %s --user %s' % (command, tenant, user))
 	if rc != 0:
 		module.fail_json(msg="Error while checking existing user roles.", rc=rc, err=err)
 	user_roles = dict()
