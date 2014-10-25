@@ -17,7 +17,6 @@ def user_list(module, command):
 		module.fail_json(msg="Error while checking existing users.", rc=rc, err=err)
 	users = dict()
 	for row in out.split('\n'):
-		print row
 		if '|' in row:
 			items = [ item.strip() for item in row.split('|') ]
 			for item in items:
