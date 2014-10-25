@@ -29,7 +29,7 @@ def user_role_list(module, command, user, tenant):
 def user_role_exit(role, user_roles):
 	return user_roles.has_key(role)
 
-def create_user_role(module, command, user, role, tenat):
+def create_user_role(module, command, user, role, tenant):
 	command = '%s user-role-add --user %s --role %s --tenant %s' % (command, user, role, tenant)
 	rc, out, err = module.run_command(command)
 	if rc != 0:
