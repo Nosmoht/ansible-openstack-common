@@ -11,8 +11,8 @@ OPENSTACK_KEYSTONE_BIN = '/usr/bin/keystone'
 # +----------------------------------+-------+----------------------------------+----------------------------------+
 # | cdfccf571945457bb2ec3421c0d00218 | admin | f0959a16637444009262aad8c300709c | 4e43ac0534ad4383b86a5e7c02aab7c7 |
 # +----------------------------------+-------+----------------------------------+----------------------------------+
-def user_role_list(module, command):
-	rc, out, err = module.run_command('%s user-list --tenant %s --user %s' % (command, module.params['tenant'], module.params['user']))
+def user_role_list(module, command, user, tenant):
+	rc, out, err = module.run_command('%s user-list --tenant %s --user %s' % (command, tenant, user))
 	if rc != 0:
 		module.fail_json(msg="Error while checking existing user roles.", rc=rc, err=err)
 	user_roles = dict()
@@ -54,7 +54,7 @@ def ensure_user_role(module):
 	command = '%s --os-token %s --os-endpoint %s' % (OPENSTACK_KEYSTONE_BIN, token, endpoint)
 	changed = False
 	
-	user_roles = user_role_list(module, command)
+	user_roles = user_role_list(module, command, user, tenant)
 	if state == 'present' and not user_role_exit(user, user_roles):
 		changed = create_user_role(module, command, user, role, tenant)
 	elif state == 'absent' and user_role_exit(user, user_roles):
@@ -64,18 +64,17 @@ def ensure_user_role(module):
 def main():
 	module = AnsibleModule(
 	    argument_spec=dict(
-			tenant_name=dict(required=True, Type='str'),
-			user_name=dict(required=True, Type='str'),
-			role_name=dict(required=True, Type='str'),
+			user=dict(required=True, Type='str'),
+			role=dict(required=True, Type='str'),
+			tenant=dict(required=True, Type='str'),
 	        state=dict(default='present', choices=['present', 'absent']),
 	        token=dict(Default=None, required=True),
 	        endpoint=dict(Default=None, required=True),
-	        name='%s-%s-%s' % (tenant_name, user_name, role_name)
 	    ),
 	)
 	
 	changed = ensure_user_role(module)
-	module.exit_json(changed=changed, name=name)
+	module.exit_json(changed=changed, name='%s-%s-%s' % (user, role, tenant))
 
 # import module snippets
 from ansible.module_utils.basic import *
