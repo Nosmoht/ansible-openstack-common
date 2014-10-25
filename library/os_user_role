@@ -47,7 +47,6 @@ def ensure_user_role(module):
 	user = module.params['user']
 	role = module.params['role']
 	tenant = module.params['tenant']
-	enabled = module.params['enabled']
 	state = module.params['state']
 	token = module.params['token']
 	endpoint = module.params['endpoint']
