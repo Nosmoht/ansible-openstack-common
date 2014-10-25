@@ -5,6 +5,7 @@
   
 - name: Install EPEL Repository
   yum: name={{ epel_yum_repo_file }} state=present
+  when: ansible_os_family == "RedHat"   
   
 - name: Setup Openstack Yum Repository
   yum: name={{ openstack_yum_repo_file }} state=installed
@@ -16,3 +17,4 @@
  
 - name: Update System
   yum: name=* state=latest
+  when: ansible_os_family == "RedHat"  
