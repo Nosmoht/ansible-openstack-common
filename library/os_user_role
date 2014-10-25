@@ -71,9 +71,9 @@ def main():
 	        endpoint=dict(Default=None, required=True),
 	    ),
 	)
-	
+	name = '%s-%s-%s' % (module.params['user'], module.params['role'], module.params['tenant'])
 	changed = ensure_user_role(module)
-	module.exit_json(changed=changed, name='%s-%s-%s' % (user, role, tenant))
+	module.exit_json(changed=changed, name=name)
 
 # import module snippets
 from ansible.module_utils.basic import *
