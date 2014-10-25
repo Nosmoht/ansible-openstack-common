@@ -1,7 +1,6 @@
 ---
+epel_yum_repo_file: http://ftp-stud.hs-esslingen.de/pub/epel/7/x86_64/e/epel-release-7-2.noarch.rpm
 openstack_yum_repo_file: http://rdo.fedorapeople.org/openstack-juno/rdo-release-juno.rpm
-openstack_database_node_name: os-db-01
-openstack_controller_node_name: os-ctrl-01
 openstack_message_broker_user_name: openstack
 openstack_message_broker_user_pass: openstack
 openstack_keystone_dbname: keystone
