@@ -3,12 +3,32 @@ epel_yum_repo_file: http://ftp-stud.hs-esslingen.de/pub/epel/7/x86_64/e/epel-rel
 openstack_yum_repo_file: http://rdo.fedorapeople.org/openstack-juno/rdo-release-juno.rpm
 openstack_message_broker_user_name: openstack
 openstack_message_broker_user_pass: openstack
-openstack_keystone_dbname: keystone
-openstack_keystone_db_user_name: keystone
-openstack_keystone_db_user_pass: openstack
-openstack_glance_dbname: glance
-openstack_glance_db_user_name: glance
-openstack_glance_db_user_pass: openstack
 openstack_keystone_admin_token: e4b019a72cb81650d42f
-openstack_admin_tenant_admin_user: admin
-openstack_admin_tenant_admin_pass: admin
+openstack_admin_tenant_name: admin
+openstack_service_tenant_name: service
+openstack_admin_role_name: admin
+openstack_admin_user_name: admin
+openstack_admin_user_pass: admin
+openstack_tenants:
+- name: '{{ openstack_admin_tenant_name }}'
+  description: Admin tenant
+- name: '{{ openstack_service_tenant_name }}'
+  description: Service tenant
+- name: demo
+  description: Demo tenant
+openstack_roles:
+- name: '{{ openstack_admin_role_name }}'
+- name: _member_
+openstack_users:
+- name: '{{ openstack_admin_user_name }}'
+  password: '{{ openstack_admin_user_pass }}'
+  email: admin@example.com
+  roles:
+  - tenant: admin
+    role: admin
+- name: demo
+  password: demo
+  email: demo@example.com
+  roles:
+  - tenant: demo
+    role: _member_
