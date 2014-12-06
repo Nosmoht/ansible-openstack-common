@@ -1,11 +1,9 @@
 ---
+- include_vars: '{{ openstack_release }}.yml'
+
 - name: Install yum-plugin-priorities
   yum: name=yum-plugin-priorities state=installed enablerepo=ol7_optional_latest  
-  
-- name: Install EPEL Repository
-  yum: name={{ epel_yum_repo_file }} state=present
-  
-  
+
 - name: Setup Openstack Yum Repository
   yum: name={{ openstack_yum_repo_file }} state=installed
   
