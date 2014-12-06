@@ -1,6 +1,7 @@
 ---
-epel_yum_repo_file: http://ftp-stud.hs-esslingen.de/pub/epel/7/x86_64/e/epel-release-7-2.noarch.rpm
-openstack_yum_repo_file: http://rdo.fedorapeople.org/openstack-juno/rdo-release-juno.rpm
+openstack_release: juno
+openstack_mysql_user_name: root
+openstack_mysql_user_pass: null
 openstack_message_broker_user_name: openstack
 openstack_message_broker_user_pass: openstack
 openstack_keystone_admin_token: e4b019a72cb81650d42f
@@ -8,7 +9,7 @@ openstack_admin_tenant_name: admin
 openstack_service_tenant_name: service
 openstack_admin_role_name: admin
 openstack_admin_user_name: admin
-openstack_admin_user_pass: admin
+openstack_admin_user_pass: openstack
 openstack_tenants:
 - name: '{{ openstack_admin_tenant_name }}'
   description: Admin tenant
